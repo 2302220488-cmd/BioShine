@@ -1,20 +1,27 @@
-document.getElementById("orderForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+        e.preventDefault();
 
-    var nama = document.getElementById("nama").value;
-    var varian = document.getElementById("varian").value;
-    var jumlah = document.getElementById("jumlah").value;
-    var catatan = document.getElementById("catatan").value;
+        var nama = document.getElementById("nama").value;
+        var varian = document.getElementById("varian").value;
+        var jumlah = document.getElementById("jumlah").value;
+        var catatan = document.getElementById("catatan").value;
 
-    var pesan =
-        "Halo, saya mau pesan BioShine%0A%0A" +
-        "Nama: " + nama + "%0A" +
-        "Varian: " + varian + "%0A" +
-        "Jumlah: " + jumlah + "%0A" +
-        "Catatan: " + catatan;
+        if(!nama || !varian || !jumlah) {
+            alert("Mohon lengkapi data pemesanan!");
+            return;
+        }
 
-    var nomorWA = "6283896690924";
-    var url = "https://wa.me/" + nomorWA + "?text=" + pesan;
+        var pesan =
+            "Halo, saya mau pesan BioShine\n\n" +
+            "Nama: " + nama + "\n" +
+            "Varian: " + varian + "\n" +
+            "Jumlah: " + jumlah + "\n" +
+            "Catatan: " + catatan;
 
-    window.open(url, "_blank");
+        var nomorWA = "6283896690924"; // Ganti dengan nomor WA kamu
+        var url = "https://wa.me/" + nomorWA + "?text=" + encodeURIComponent(pesan);
+
+        window.open(url, "_blank");
+    });
 });
